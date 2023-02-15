@@ -5,8 +5,11 @@ a = 1000
 # b = a
 b = 1000
 
-a is b #False
-a == b #True
+print(a is b) # False
+print(a == b) # True
+
+
+# -5 to 256 are cached in python
 
 # Problem
 c = 230
