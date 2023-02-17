@@ -24,7 +24,7 @@ def my_handler(original_func):
             return new_value
         except Exception as e:
             print(f'Error: {e}')
-    return wrapper_functe
+    return wrapper_func
 
 
 def my_timer(original_func):
