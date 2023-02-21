@@ -51,11 +51,10 @@ class N_Even_Number:
         return self
 
     def __next__(self):
-        if self.counter < self.num:
-            self.counter += 1
-            return self.counter * 2
-        else:
+        if self.counter >= self.num:
             raise StopIteration
+        self.counter += 1
+        return self.counter * 2
     
 # for i in N_Even_Number(10):
 #     print(type(i), i)

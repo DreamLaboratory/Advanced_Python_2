@@ -1,0 +1,5 @@
+02/21/2023 08:12:20 PM: INFO: main Line:25  This is an info-level log message
+02/21/2023 08:12:20 PM: WARNING: main Line:26  This is a warning-level message
+02/21/2023 08:17:03 PM: INFO: main Line:25 User: joem@example.com Password:qwerty This is an info-level log message
+02/21/2023 08:17:13 PM: INFO: main Line:25 User: joem@example.com Password:qwerty This is an info-level log message
+02/21/2023 08:17:13 PM: WARNING: main Line:26 User: joem@example.com Password:qwerty This is a warning-level message

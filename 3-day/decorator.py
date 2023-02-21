@@ -15,7 +15,6 @@ def display(name):
     return f'Hello {name}'
 
 
-
 def my_handler(original_func):
 
     def wrapper_func(*args, **kwargs):

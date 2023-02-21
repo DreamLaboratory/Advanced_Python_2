@@ -7,5 +7,3 @@ for i in y:
     a.extend(list_of_nums)
 d=Counter(a)
 print(d.most_common(1))
-
-from collections import Counter

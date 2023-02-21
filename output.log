@@ -1,0 +1,6 @@
+2023-02-21 19:42:25,056 [INFO] This is an info-level log message
+2023-02-21 19:42:25,058 [WARNING] This is a warning-level message
+2023-02-21 19:42:25,059 [ERROR] This is an error-level message
+2023-02-21 19:42:25,059 [CRITICAL] This is a critical-level message in a function name
+2023-02-21 19:42:25,060 [INFO] Here's a string variable and an int: 10
+2023-02-21 19:42:25,061 [CRITICAL] unsupported operand type(s) for /: 'int' and 'str'
