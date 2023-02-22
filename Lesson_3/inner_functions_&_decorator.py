@@ -116,7 +116,7 @@ display()
 # Class decorator example
 
 
-class decorator_class(object):
+class decorator_class:
     def __init__(self, original_function):
         self.original_function = original_function
 

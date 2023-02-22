@@ -13,7 +13,6 @@ def my_context():
 with my_context() as foo:
     print(f'foo is {foo}') # foo is 42
 """
-
 from contextlib import contextmanager
 
 

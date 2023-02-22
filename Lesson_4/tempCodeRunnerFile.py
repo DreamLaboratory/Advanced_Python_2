@@ -1,42 +1,21 @@
-class Animal:
-    def __init__(self, name):
-        self.name = name
+class Indenter:
+    def __init__(self):
+        self.level = 0
 
-    def eat(self):
-        print(f'{self.name} is eating')
+    def __enter__(self):
+        self.level += 1
+        return self
 
-    def drink(self):
-        print(f'{self.name} is drinking')
-
-    @staticmethod
-    def get_child_count(child_count: int):
-        return child_count > 0
-
-class Dog(Animal):
-    def fetch(self):
-        print(f'{self.name} is fetching')
-
-class Cat(Animal):
-
-    def __init__(self, name, child_count=0):
-        super().__init__(name)
-        self.child_count = child_count
-
-    def swatstring(self):
-        print(f'{self.name} shreds the string!')
-
-    @staticmethod
-    def get_child_count(child_count: int):
-        return child_count > 0
-
-    @classmethod
-    def set_child_count(cls, child_count: int):
-        return cls('Isis', child_count)
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.level -= 1
 
 
-if Cat.get_child_count(-1):
-    print('Isis has kittens')
-    isis_2 = Cat.set_child_count(-1)
-    print(isis_2.child_count)
-else:
-    print('Isis has no kittens')
+    def wow(self, text):
+        # Works the same as print
+        print(f' {self.level} - {text}' )
+
+
+with Indenter() as indent:
+    indent.wow('hello')
+    with indent:
+        indent.wow('bonjour')

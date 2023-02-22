@@ -2,9 +2,8 @@ import requests
 
 def send_msg(text:str) -> bool:
     base_url = "https://api.telegram.org/bot"
-    token = "TOKEN"
     chat_id = "CHAT_ID"
-    url = base_url + token + "/sendMessage?chat_id=" + chat_id + "&text=" + text
+    url = f"{base_url}TOKEN/sendMessage?chat_id={chat_id}&text={text}"
     response = requests.get(url)
     return response.status_code == 200
 
