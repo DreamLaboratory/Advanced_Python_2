@@ -17,7 +17,7 @@ class MyClass:
 
     @classmethod
     def classmethod(cls):
-
+        print(cls.staticmethod())
         return 'class method called', cls
 
     @staticmethod
@@ -73,6 +73,14 @@ if all(Pizza.validate_topping(i) for i in ingredients):
     print(pizza.toppings)
 else:
     print('No pineapples!')
+
+
+
+
+#2002 
+
+# person = Peson(2002) #20
+#person2   = Person.fromBirthYear(20) #2002
 
 ######################################### Python Encapsulation #########################################
 

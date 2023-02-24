@@ -1,39 +1,43 @@
-# Example 3: Combination of timer and logger decorator
-import logging
-from functools import wraps
 
-def out_logger(level: logging):
+counter = 0
 
-    def my_logger(original_function):
-        logging.basicConfig(
-            filename=f"{original_function.__name__}.log", level=level)
+class Employee:
 
-        def wrapper(*args, **kwargs):
-            logging.info(
-                f"Ran with args: {args}, and kwargs: {kwargs}")
-            return original_function(*args, **kwargs)
-        return wrapper
-    return my_logger
+    counter = 0 # Class variable or attribute
+
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+        Employee.counter += 1
 
 
-def my_timer(original_function):
-    import time
+    def __repr__(self):
+        return f"Employee ('{ self.first }', '{ self.last }')"
 
-    @wraps(original_function)
-    def wrapper(*args, **kwargs):
-        t1 = time.time()
-        result = original_function(*args, **kwargs)
-        t2 = time.time() - t1
-        print(f"{original_function.__name__} ran in: {t2} sec")
-        return result
+    def __str__(self):
+        return f"{ self.first } { self.last }"
 
-    return wrapper
+    def __add__(self, other):
+        return f"{ self.first } { other.last }"
 
 
-# @out_logger(logging.INFO)
-@my_timer
-def display_info(name, age):
-    print(f"display_info ran with arguments ({name}, {age})")
+    def __len__(self):
+        return len(self.first) + len(self.last)
+
+emp_1 = Employee("Davron", "Davronov")
+
+print(emp_1.counter)
+
+emp_2 = Employee("Adam", "Smith")
+print(emp_2.counter)
+
+print(Employee.counter)
 
 
-display_info("Davron", 25)
+print(emp_1)
+print(emp_2)
+
+print(emp_1 + emp_2)
+
+print(len(emp_1))

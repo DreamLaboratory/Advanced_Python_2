@@ -1,3 +1,4 @@
+#Example of context manager for postgresql connection
 import psycopg2
 from psycopg2 import Error
 

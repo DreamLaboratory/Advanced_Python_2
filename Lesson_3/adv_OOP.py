@@ -23,14 +23,15 @@ class Employee:
     def fullname(self):
         return f"{ self.first } { self.last }"
 
-    def email(self):
+    def email(self, new_email):
+        self.new_email = new_email
         return self._email  # Protected attribute
 
     def salary(self):
         return self.__salary # 
 
 emp_1 = Employee("Davron", "Davronov")
-
+print(emp_1.salary())
 print(emp_1.first)
 print(emp_1.last)
 print(emp_1.email())
@@ -102,13 +103,21 @@ print(tesla_1.get_price())
 
 # Example 1: Magic methods
 
+counter = 0
+
 class Employee:
+
+    counter = 0 # Class variable or attribute
+
     def __init__(self, first, last):
         self.first = first
         self.last = last
 
+        Employee.counter += 1
+
+
     def __repr__(self):
-        return f"Employee('{ self.first }', '{ self.last }')"
+        return f"Employee ('{ self.first }', '{ self.last }')"
 
     def __str__(self):
         return f"{ self.first } { self.last }"
@@ -116,11 +125,19 @@ class Employee:
     def __add__(self, other):
         return f"{ self.first } { other.last }"
 
+
     def __len__(self):
         return len(self.first) + len(self.last)
 
 emp_1 = Employee("Davron", "Davronov")
+
+print(emp_1.counter)
+
 emp_2 = Employee("Adam", "Smith")
+print(emp_2.counter)
+
+print(Employee.counter)
+
 
 print(emp_1)
 print(emp_2)
@@ -128,7 +145,6 @@ print(emp_2)
 print(emp_1 + emp_2)
 
 print(len(emp_1))
-
 # __repr__ is used to represent the object and is usually used for debugging and development.
 # __str__ is used to display the object and is usually used for end-user display.
 # __add__ is used to add two objects together using the + operator.
