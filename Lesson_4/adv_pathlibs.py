@@ -1,5 +1,6 @@
 from pathlib import Path
 from os import getcwd, chdir
+import os
 
 # What is Pathlib?
 # Pathlib is a module that allows us to work with files and directories in a more object-oriented way.
@@ -16,6 +17,8 @@ from os import getcwd, chdir
 # We can create a Path object by passing it a string of the file or directory path.
 # We can also use the Path() function to create a Path object.
 # We can use the Path object's methods to work with files and directories.
+
+# .sh file python adv_pathlibs.py
 
 def main():
     # Let's create a Path object that represents the current directory.
@@ -38,34 +41,38 @@ def main():
     # create a new directory
     # path = Path("new_dir")
     # path.mkdir()
-    # print("Does path exist?", path.exists())
-    # print("Is path a file?", path.is_file())
-    # print("Is path a directory?", path.is_dir())
+    # print("Does path exist?", path.exists()) # True
+    # print("Is path a file?", path.is_file()) # False
+    # print("Is path a directory?", path.is_dir()) # True
 
-    # # create a new file
+    # create a new file
     # path = Path(".env")
-    # path.touch() # create a new file
+    # path.touch(
+    #     exist_ok=True
+    # ) # create a new file
     # print("Does path exist?", path.exists())
     # print("Is path a file?", path.is_file())
     # print("Is path a directory?", path.is_dir())
 
     # # rename a file
     # path = Path("new_file.txt")
-    # path2  = path.rename("new_file_renamed.txt")
+    # if not path.exists():
+    #     path.touch()
+    # path2 = path.rename("new_file_renamed.txt")
     # print("Does path exist?", path2.exists())
     # print("Is path2 a file?", path2.is_file())
 
-    # # delete a file
+    # delete a file
     # path = Path("new_file.txt")
-    # path.unlink()
+    # path.unlink(missing_ok=True) #or os.remove()
     # print("Does path exist?", path.exists())
 
     # # delete a directory
-    # path = Path("new_dir")
-    # path.rmdir()
+    # path = Path("new_dir2")
+    # path.rmdir() #or os.rmdir()
     # print("Does path exist?", path.exists())
 
-    # # get the parent directory
+    # get the parent directory
     # path = Path("test.txt")
     # print("Parent directory:", path.parent.cwd())
 
@@ -78,7 +85,7 @@ def main():
     # print("File suffix:", path.suffix)
 
     # # get the file stem
-    # path = Path("test.txt")
+    # path = Path("test.last.txt")
     # print("File stem:", path.stem)
 
     # # get the file size
@@ -88,4 +95,5 @@ def main():
     print("File size:", path.stat().st_size)
 
 if __name__ == "__main__":
+    #TODO check file if exists rename with current date and time and write old file name using with open() as f: f.write()
     main()

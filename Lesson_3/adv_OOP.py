@@ -152,4 +152,3 @@ print(len(emp_1))
 # __format__ is used to format the object and is usually used for end-user display.
 
 # __repr__ vs __str__ vs __format__: https://stackoverflow.com/questions/1436703/difference-between-str-and-repr
-

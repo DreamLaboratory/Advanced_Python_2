@@ -13,7 +13,9 @@ def out_logger(level:str):
             logging.debug(
                 f"Ran with args: {args}, and kwargs: {kwargs}")
             return original_function(*args, **kwargs)
+        
         return wrapper
+    
     return my_logger
 
 

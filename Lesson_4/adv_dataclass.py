@@ -1,24 +1,27 @@
-class MyClassName:
-    age = 30
+# class MyClassName:
+#     age = 30
 
-    def __init__(self, name:str, age:int=30):
-        self.name:str = name
-        self.age = age
+#     def __init__(self, name:str, age:int=30):
+#         self.name:str = name
+#         self.age = age
 
-        self.validate_age()
+#         self.validate_age()
     
-    def validate_age(self):
-        if self.age < 0:
-            raise ValueError("Age cannot be negative.")
+#     def validate_age(self):
+#         if self.age < 0:
+#             raise ValueError("Age cannot be negative.")
 
-    def __eq__(self, __o: object) -> bool:
-        return self.name == __o.name and self.age == __o.age
+#     def __eq__(self, __o: object) -> bool:
+#         return self.name == __o.name and self.age == __o.age
 
-object_1 = MyClassName("John", 30)
-object_2 = MyClassName("Davron", 40)
-print(object_2>object_1)
-object_1.age = -4
-print(object_1.validate_age())
+# object_1 = MyClassName("John", 30)
+# object_1.age = 40
+# object_2 = MyClassName("Davron", 40)
+# object_3 = MyClassName("John_2", 45)
+
+# print(object_2>object_1)
+# object_1.age = -4
+# print(object_1.validate_age())
 
 
 # Dataclass in Python 3.7
@@ -37,7 +40,7 @@ from dataclasses import dataclass, field, asdict, astuple
 class Person:
     name: str
     age: int
-    active: bool = field(default=True, repr=False)
+    active: bool = field(default=True)
 
 
 # Create a Person object.
@@ -45,8 +48,8 @@ person_1 = Person("John", 30)
 person_2 = Person("John", 30)
 
 #compare two objects
-print(person_1 == person_2)
-print(person_1 is person_2)
+print(person_1 == person_2) # True because they have the same values
+print(person_1 is person_2) # False because they are different objects in memory
 
 # Print the Person object.
 print(person_1) #Person(name='John', age=30, active=True)
