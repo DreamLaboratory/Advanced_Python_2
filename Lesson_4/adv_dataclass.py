@@ -126,7 +126,10 @@ class Person:
         super().__setattr__(name, value)
 
 # Create a Person object.
-person = Person("John", -30)
+person = Person(age=30, name="John")
+
+# update the name attribute
+person.name = "Davron"
 
 # Print the Person object.
 print(person)
