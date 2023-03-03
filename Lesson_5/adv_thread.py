@@ -25,13 +25,23 @@
 # import threading
 # import time
 
-# def display():
-#     for _ in range(10):
-#         print("Hello")
+# def display(n_time):
+#     for _ in range(n_time):
+#         print("Thread 1")
+#         #if user exsits and passwor is correct
+#         # send email to user 
 #         time.sleep(1)
 
-# t = threading.Thread(target=display)
+# def display2(n_time):
+#     for _ in range(n_time):
+#         print("Thread 2")
+#         time.sleep(1)
+
+
+# t = threading.Thread(target=display, args=(1000,))
+# t2 = threading.Thread(target=display2, args=(1000,))
 # t.start()
+# t2.start()
 
 
 
@@ -59,8 +69,11 @@
 # import queue
 
 # def display(q):
+#     counter = 0
 #     while True:
 #         print(q.get())
+#         counter += 1
+#         print(counter)
 #         # time.sleep(1)
 
 # q = queue.Queue()
@@ -70,7 +83,7 @@
 # t2.start()
 
 # for _ in range(100):
-#     q.put("Hello")
+#     q.put("Salom")
     
 
 # # Example with daemon:
@@ -79,16 +92,16 @@
 
 # import threading
 # import time
-
-# def display():
+# list_of_numbers = [1,2,3,4,5,6,7,8,9,10]
+# def display(num):
 #     for _ in range(10):
-#         print("Hello")
-#         time.sleep(1)
+#         print([n**3 for n in num ])
+        
 
-# t = threading.Thread(target=display)
-# t.daemon = True # It will terminate the thread when main thread terminates.
+# t = threading.Thread(target=display, args=(list_of_numbers,))
 # t.start()
-
+# t.join() # It will wait for the thread to terminate.
+# print("Main thread")
 # # Example with join:
 
 # # 5. We can use join in Thread.
@@ -117,7 +130,7 @@
 # def display():
 #     for _ in range(10):
 #         r = requests.get("https://api.github.com/users") #
-#         print(r.json())
+#         print(r.status_code)
 #         # time.sleep(1)
 
 # t1 = threading.Thread(target=display) # I/O 
@@ -125,11 +138,12 @@
 
 # start = time.perf_counter()
 
-# t1.start()
-# t2.start()
-# t1.join()
-# t2.join()
-# # display() # syc
+# # t1.start()
+# # t2.start()
+# # t1.join()
+# # t2.join()
+
+# display() # syc
 
 # end_time = start - time.perf_counter()
 # print(end_time)
@@ -139,38 +153,42 @@
 # Example Race problem
 
 #GIL Global Interprent Lock
+import time
 
-# class Race_c:
+class Race_c:
 
-#     def __init__(self, value) -> None:
-#         self.value = value
+    def __init__(self, value) -> None:
+        self.value = value
 
-#     def increace_int(self)->None:
-#         self.value +=1
+    def increace_int(self)->None:
+        self.value +=1
     
     
-#     def reduce(self)->None:
-#         self.value -=1
+    def reduce(self)->None:
+        self.value -=1
 
-# def do_run(race):
-#     for _ in range(1_000_000):
-#         race.increace_int()
-#         race.reduce()
-
-
-# import threading
-
-# race_c = Race_c(value=0)
-
-# t1 = threading.Thread(target=do_run, args=(race_c,))
-# t2 = threading.Thread(target=do_run, args=(race_c,))
-
-# t1.start()
-# t2.start()
-# t1.join()
-# t2.join()
+def do_run(race):
+    for _ in range(1_000_000):
+        race.increace_int()
+        race.reduce()
+        time.sleep(0.0001)
 
 
-# print(t1)
-# print(t2)
+import threading
 
+race_c = Race_c(value=0)
+print(race_c.value)
+
+t1 = threading.Thread(target=do_run, args=(race_c,), name="Thread 1")
+t2 = threading.Thread(target=do_run, args=(race_c,))
+
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+
+
+print(t1)
+print(t2)
+
+print(race_c.value)
